@@ -3,7 +3,8 @@
 # Nugets
 for swagger, install in .server
 - Swashbuckle.AspNetCore
-https://localhost:7032/swagger/index.html
+Use to access swagger:
+- https://localhost:7032/swagger/index.html
 
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.Design
