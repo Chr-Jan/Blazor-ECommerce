@@ -1,4 +1,4 @@
-# BlazorECommerce
+H1 BlazorECommerce
 
 # Nugets
 for swagger, install in .server
