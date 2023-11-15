@@ -1,7 +1,8 @@
 global using BlazorECommerce.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorECommerce.Server.Data;
-using Microsoft.AspNetCore.ResponseCompression;
+global using Microsoft.AspNetCore.ResponseCompression;
+global using BlazorECommerce.Server.Services.ProductService;
 
 namespace BlazorECommerce
 {
@@ -24,6 +25,8 @@ namespace BlazorECommerce
             //for adding swagger #part 1
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 
