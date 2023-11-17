@@ -3,6 +3,7 @@ global using Microsoft.EntityFrameworkCore;
 global using BlazorECommerce.Server.Data;
 global using Microsoft.AspNetCore.ResponseCompression;
 global using BlazorECommerce.Server.Services.ProductService;
+global using BlazorECommerce.Server.Services.CategoryService;
 
 namespace BlazorECommerce
 {
@@ -27,6 +28,7 @@ namespace BlazorECommerce
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 
