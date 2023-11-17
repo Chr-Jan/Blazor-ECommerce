@@ -3,6 +3,7 @@
     public interface ICategoryService
     {
         List<Category> Categories { get; set; }
-        Task<Category> GetCategories();
+        Task GetCategories();
+
     }
 }
