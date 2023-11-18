@@ -1,4 +1,5 @@
 ﻿using BlazorECommerce.Server.Data;
+using BlazorECommerce.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,5 +31,13 @@ namespace BlazorECommerce.Server.Controllers
             return Ok(result);
         }
 
+        //[HttpGet("category/{categoryUrl}")]
+        [HttpGet]
+        [Route("category/{categoryUrl}")]
+        public async Task<ActionResult<ServiceResponse<List<Category>>>> GetProductsByCategory(string categoryUrl)
+        {
+            var result = await _productService.GetProductsByCategoryAsync(categoryUrl);
+            return Ok(result);
+        }
     }
 }
