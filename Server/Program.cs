@@ -23,7 +23,19 @@ namespace BlazorECommerce
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
-            //for adding swagger #part 1
+            // adding Cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("BlazorWasm", policy =>
+                {
+                    policy.
+                    WithOrigins("http://localhost:7032")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
+
+            // swagger #part 1
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -61,6 +73,8 @@ namespace BlazorECommerce
             app.MapRazorPages();
             app.MapControllers();
             app.MapFallbackToFile("index.html");
+
+            app.UseCors("BlazorWasm");
 
             app.Run();
         }
