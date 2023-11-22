@@ -26,7 +26,7 @@ namespace BlazorECommerce
             // adding Cors
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("BlazorWasm", policy =>
+                options.AddPolicy("BlazorCors", policy =>
                 {
                     policy.
                     WithOrigins("http://localhost:7032")
@@ -74,7 +74,7 @@ namespace BlazorECommerce
             app.MapControllers();
             app.MapFallbackToFile("index.html");
 
-            app.UseCors("BlazorWasm");
+            app.UseCors("BlazorCors");
 
             app.Run();
         }
