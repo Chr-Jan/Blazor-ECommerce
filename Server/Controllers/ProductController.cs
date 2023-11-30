@@ -19,7 +19,7 @@ namespace BlazorECommerce.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            var result = await _productService.GetProductsAsync();
+            var result = await _productService.GetProducts();
             return Ok(result);
         }
 
@@ -27,17 +27,34 @@ namespace BlazorECommerce.Server.Controllers
         [Route("{productId}")]
         public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
         {
-            var result = await _productService.GetProductAsync(productId);
+            var result = await _productService.GetProductById(productId);
             return Ok(result);
         }
 
         //[HttpGet("category/{categoryUrl}")]
         [HttpGet]
         [Route("category/{categoryUrl}")]
-        public async Task<ActionResult<ServiceResponse<List<Category>>>> GetProductsByCategory(string categoryUrl)
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProductsByCategory(string categoryUrl)
         {
-            var result = await _productService.GetProductsByCategoryAsync(categoryUrl);
+            var result = await _productService.GetProductsByCategory(categoryUrl);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("search/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> SearchProducts(string searchText)
+        {
+            var result = await _productService.SearchProducts(searchText);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("searchSuggestions/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<List<string>>>> GetProductSearchSuggestions(string searchText)
+        {
+            var result = await _productService.GetProductSearchSuggestions(searchText);
+            return Ok(result);
+        }
+
     }
 }

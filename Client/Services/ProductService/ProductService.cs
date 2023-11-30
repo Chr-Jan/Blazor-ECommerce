@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using Microsoft.JSInterop;
+using System.Net.Http.Json;
 
 namespace BlazorECommerce.Client.Services.ProductService
 {
@@ -10,10 +11,11 @@ namespace BlazorECommerce.Client.Services.ProductService
             _http = http;
         }
         public List<Product> Products { get; set; } = new List<Product>();
+        public string Message { get; set; } = "Loadin products...";
 
         public event Action ProductsChanged;
 
-        public async Task<ServiceResponse<Product>> GetProduct(int productId)
+        public async Task<ServiceResponse<Product>> GetProductById(int productId)
         {
             var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"api/product/{productId}");
             return result;
@@ -28,13 +30,34 @@ namespace BlazorECommerce.Client.Services.ProductService
             var result = categoryUrl == null ?
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product") :
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
-            if(result != null && result.Data != null)
+            if (result != null && result.Data != null)
             {
                 Products = result.Data;
             }
 
             ProductsChanged.Invoke();
 
+        }
+
+        public async Task<List<string>> GetProductSearchSuggestions(string searchText)
+        {
+            var result = await _http
+              .GetFromJsonAsync<ServiceResponse<List<string>>>($"api/product/searchsuggestions/{searchText}");
+
+            return result.Data;
+        }
+
+        public async Task SearchProducts(string searchText)
+        {
+            var result = await _http
+                .GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/search/{searchText}");
+            
+            Products = result.Data;
+            if (Products.Count == 0)
+            {
+                Message = "No products found.";
+            }
+            ProductsChanged.Invoke();
         }
     }
 }

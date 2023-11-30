@@ -380,6 +380,8 @@
                 (
                 new ProductVariant { ProductId = 1, ProductTypeId = 2, Price = 9.99m, OriginalPrice = 19.99m },
                 new ProductVariant { ProductId = 2, ProductTypeId = 2, Price = 6.99m, OriginalPrice = 14.99m },
+                new ProductVariant { ProductId = 2, ProductTypeId = 3, Price = 3.99m, OriginalPrice = 10.99m },
+                new ProductVariant { ProductId = 2, ProductTypeId = 4, Price = 2.99m, OriginalPrice = 11.99m },
                 new ProductVariant { ProductId = 3, ProductTypeId = 2, Price = 8.99m, OriginalPrice = 16.99m },
                 new ProductVariant { ProductId = 4, ProductTypeId = 6, Price = 4.99m, OriginalPrice = 12.99m },
                 new ProductVariant { ProductId = 5, ProductTypeId = 6, Price = 3.99m, OriginalPrice = 10.99m },
