@@ -66,7 +66,8 @@
                         Title = "Nineteen Eighty-Four",
                         Description = "Nineteen Eighty-Four (also published as 1984) is a dystopian novel and cautionary tale by English writer George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. Thematically, it centres on the consequences of totalitarianism, mass surveillance and repressive regimentation of people and behaviours within society.[2][3] Orwell, a democratic socialist, modelled the authoritarian state in the novel on the Soviet Union in the era of Stalinism, and Nazi Germany.[4] More broadly, the novel examines the role of truth and facts within societies and the ways in which they can be manipulated.",
                         ImageUrl = "https://upload.wikimedia.org/wikipedia/en/5/51/1984_first_edition_cover.jpg",
-                        CategoryId = 1
+                        CategoryId = 1,
+                        Featured = true
                     },
                     new Product
                     {
@@ -125,6 +126,7 @@
                         Title = "Day of the Tentacle",
                         Description = "Day of the Tentacle, also known as Maniac Mansion II: Day of the Tentacle, is a 1993 graphic adventure game developed and published by LucasArts. It is the sequel to the 1987 game Maniac Mansion.",
                         ImageUrl = "https://upload.wikimedia.org/wikipedia/en/7/79/Day_of_the_Tentacle_artwork.jpg",
+                        Featured = true
                     },
                     new Product
                     {
@@ -164,7 +166,8 @@
                         Title = "Dune",
                         Description = "Dune is a science fiction novel by Frank Herbert, first published in 1965. It is set in the distant future amidst a feudal interstellar society.",
                         ImageUrl = "https://upload.wikimedia.org/wikipedia/en/d/de/Dune-Frank_Herbert_%281965%29_First_edition.jpg",
-                        CategoryId = 1
+                        CategoryId = 1,
+                        Featured = true
                     },
                     new Product
                     {
@@ -357,6 +360,7 @@
                         Title = "Cyberpunk 2077",
                         Description = "Cyberpunk 2077 is an action role-playing game developed and published by CD Projekt. It was released in 2020 and is set in an open-world dystopian future.",
                         ImageUrl = "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg",
+                        Featured = true
                     },
                     new Product
                     {
