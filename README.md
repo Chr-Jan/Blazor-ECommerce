@@ -1,5 +1,7 @@
 # BlazorECommerce
 
+# Work in process
+
 ## Nugets
 for swagger, install in .server
 - Swashbuckle.AspNetCore
