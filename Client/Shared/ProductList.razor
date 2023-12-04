@@ -1,14 +1,14 @@
 ﻿@inject IProductService ProductService
 @implements IDisposable
 
-@if(ProductService.Products == null || ProductService.Products.Count == 0)
+@if (ProductService.Products == null || ProductService.Products.Count == 0)
 {
     <span>@ProductService.Message</span>
 }
 else
 {
     <ul class="list-unstyled">
-@*         @foreach (var product in ProductService.Products) *@
+        @*         @foreach (var product in ProductService.Products) *@
         <Virtualize Items="ProductService.Products" Context="product" OverscanCount="1">
             <li class="media my-3">
                 <div class="media-img-wrapper mr-2">
@@ -21,17 +21,24 @@ else
                         <h4 class="mb-0">@product.Title</h4>
                     </a>
                     <p>@product.Description</p>
-                     <h5 class="price">
+                    <h5 class="price">
                         @GetPriceText(product)
-                    </h5> 
+                    </h5>
                 </div>
             </li>
         </Virtualize>
     </ul>
+
+    @for (int i = 1; i <= ProductService.PageCount; i++)
+    {
+        <a class="btn page-selection @(i == ProductService.CurrentPage ? "btn-info" : "btn-outline-info")"
+           href="/search/@ProductService.LastSearchText/@i"> @i </a>
+    }
+
 }
 
 
-@code 
+@code
 {
     protected override void OnInitialized()
     {
@@ -46,7 +53,7 @@ else
     private string GetPriceText(Product product)
     {
         var variants = product.Variants;
-        if(variants.Count == 0)
+        if (variants.Count == 0)
         {
             return string.Empty;
         }

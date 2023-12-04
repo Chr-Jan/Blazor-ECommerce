@@ -107,11 +107,35 @@
             return new ServiceResponse<List<string>> { Data = result };
         }
 
-            public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
+            public async Task<ServiceResponse<ProductSearchResultDTO>> SearchProducts(string searchText, int page)
             {
-                var response = new ServiceResponse<List<Product>>
+
+            // Number of results to display per page in the paginated list
+            // (set to 2 for two results per page)
+            var pageResults = 2f;
+
+
+            // Calculate the total number of pages based on the total number of results and results per page
+            var pageCount = Math.Ceiling((await FindProductsBySearchText(searchText)).Count / pageResults);
+
+            // Fetch the products for the current page using pagination
+            var products = await _context.Products
+                                .Where(p => p.Title.ToLower().Contains(searchText.ToLower())
+                                           || p.Description.ToLower().Contains(searchText.ToLower()))
+                                .Include(p => p.Variants)
+                                .Skip((page - 1) * (int)pageResults)
+                                .Take((int)pageResults)
+                                .ToListAsync();
+
+
+            var response = new ServiceResponse<ProductSearchResultDTO>
                 {
-                    Data = await FindProductsBySearchText(searchText)
+                    Data = new ProductSearchResultDTO
+                    {
+                        Products = products,
+                        CurrentPage = page,
+                        Pages = (int)pageCount
+                    }
                 };
                 return response;
             }
