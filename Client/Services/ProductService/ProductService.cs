@@ -34,17 +34,16 @@ namespace BlazorECommerce.Client.Services.ProductService
             var result = categoryUrl == null ?
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product/featured") :
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
-            
+            if (result != null && result.Data != null)
                 Products = result.Data;
+
             CurrentPage = 1;
             PageCount = 0;
-            if(Products.Count == 0)
-            {
-                Message = "No products found.";
-            }
+
+            if (Products.Count == 0)
+                Message = "No products found";
 
             ProductsChanged.Invoke();
-
         }
 
         public async Task<List<string>> GetProductSearchSuggestions(string searchText)
