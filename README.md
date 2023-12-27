@@ -1,6 +1,6 @@
 # BlazorECommerce
 
-# Work in process
+# **Work in process**
 
 ## Nugets
 for swagger, install in .server
